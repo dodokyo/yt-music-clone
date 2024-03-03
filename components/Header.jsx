@@ -1,32 +1,29 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import UserIcon from "@/components/UserIcon";
 import PagePadding from "@/components/PagePadding";
 import { FaChromecast } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import Logo from "./elements/Logo";
 import Navigator from "./elements/Navigator";
 
 const HeaderDrawer = ({ children }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <Drawer direction="left">
+    <Drawer direction="left" open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger>{children}</DrawerTrigger>
       <DrawerContent className="w-[240px] h-full">
-        {/* 로고 */}
-        {/* 네비게이션+재생목록 */}
         <div className="py-3">
           <div className="px-3">
-            <Logo />
+            <Logo
+              isInDrawer
+              onClickClose={() => {
+                setIsOpen(false);
+              }}
+            />
           </div>
           <Navigator />
         </div>
