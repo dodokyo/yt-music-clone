@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import UserIcon from "@/components/UserIcon";
 import PagePadding from "@/components/PagePadding";
 import { FaChromecast } from "react-icons/fa";
@@ -8,6 +8,7 @@ import { FiSearch } from "react-icons/fi";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import Logo from "./elements/Logo";
 import Navigator from "./elements/Navigator";
+import { cn } from "@/lib/utils";
 
 const HeaderDrawer = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,8 +34,24 @@ const HeaderDrawer = ({ children }) => {
 };
 
 const Header = ({ children }) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const headRef = useRef();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollValue = headRef?.current?.scrollTop;
+      console.log(">scrollValue", scrollValue);
+      setIsScrolled(scrollValue !== 0);
+    };
+
+    headRef?.current?.addEventListener("scroll", handleScroll);
+    return () => {
+      headRef?.current?.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <header className="relative overflow-y-auto w-full h-full">
+    <header ref={headRef} className="relative overflow-y-auto w-full h-full">
       {/* bgSection */}
       <section className=" absolute top-0 w-full">
         <div className="relative h-[400px] w-full">
@@ -49,12 +66,14 @@ const Header = ({ children }) => {
         </div>
       </section>
       {/* searchSection */}
-      <section className="sticky">
+      <section
+        className={cn("sticky top-0 left-0 z-10", isScrolled && "bg-black")}
+      >
         <PagePadding>
           <div className="h-[64px] flex flex-row justify-between items-center">
             <article
               className="h-[42px] min-w-[480px] hidden lg:flex flex-row items-center
-            bg-[rgba(0,0,0,0.14)] rounded-2xl px-[16px] gap-[16px]
+            bg-[rgba(0,0,0,0.14)] rounded-2xl px-[16px] gap-[16px] border border-neutral-500
             "
             >
               <div>
