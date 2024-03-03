@@ -4,6 +4,36 @@ import UserIcon from "@/components/UserIcon";
 import PagePadding from "@/components/PagePadding";
 import { FaChromecast } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import Logo from "./elements/Logo";
+import Navigator from "./elements/Navigator";
+
+const HeaderDrawer = ({ children }) => {
+  return (
+    <Drawer direction="left">
+      <DrawerTrigger>{children}</DrawerTrigger>
+      <DrawerContent className="w-[240px] h-full">
+        {/* 로고 */}
+        {/* 네비게이션+재생목록 */}
+        <div className="py-3">
+          <div className="px-3">
+            <Logo />
+          </div>
+          <Navigator />
+        </div>
+      </DrawerContent>
+    </Drawer>
+  );
+};
 
 const Header = ({ children }) => {
   return (
@@ -22,11 +52,11 @@ const Header = ({ children }) => {
         </div>
       </section>
       {/* searchSection */}
-      <section className="sticky ">
+      <section className="sticky">
         <PagePadding>
           <div className="h-[64px] flex flex-row justify-between items-center">
             <article
-              className="h-[42px] min-w-[480px] flex flex-row items-center
+              className="h-[42px] min-w-[480px] hidden lg:flex flex-row items-center
             bg-[rgba(0,0,0,0.14)] rounded-2xl px-[16px] gap-[16px]
             "
             >
@@ -39,6 +69,11 @@ const Header = ({ children }) => {
                 type="text"
               />
             </article>
+            <HeaderDrawer>
+              <article className="lg:hidden">
+                <Logo />
+              </article>
+            </HeaderDrawer>
             <article className="flex flex-row gap-6 items-center">
               <FaChromecast size={26} />
               <UserIcon />
