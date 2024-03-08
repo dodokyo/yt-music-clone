@@ -21,7 +21,7 @@ const PlayerContent = () => {
 
   const [audio, state, controls, ref] = useAudio({
     src: activeSong?.src, //"/music/50meru - Canopus.mp4",
-    autoPlay: false,
+    autoPlay: true,
   });
 
   const isLoading = activeSong?.src && state.buffered?.length === 0;
@@ -72,6 +72,7 @@ const PlayerContent = () => {
           onValueChange={(value) => {
             controls.seek(value);
           }}
+          max={state.duration}
         />
       </div>
       {audio}
