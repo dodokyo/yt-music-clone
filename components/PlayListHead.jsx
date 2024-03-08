@@ -4,8 +4,6 @@ import IconButton from "./elements/IconButton";
 import { FiMoreVertical, FiPlay } from "react-icons/fi";
 import Image from "next/image";
 import { getRandomElementFromArray } from "@/lib/utils";
-import DarkButton from "@/components/elements/DarkButton";
-import WhiteButton from "@/components/elements/WhiteButton";
 
 const PlayListHead = ({ playlist = {} } = {}) => {
   const { playlistName, owner, songList } = playlist;
@@ -25,8 +23,6 @@ const PlayListHead = ({ playlist = {} } = {}) => {
         </div>
         <ul>
           <IconButton icon={<FiMoreVertical size={24} />} />
-          <WhiteButton icon={<FiPlay />} label="재생" onClick={() => {}} />
-          <DarkButton />
         </ul>
       </article>
     </section>
