@@ -7,6 +7,7 @@ const HeaderBgChanger = ({ imageSrc }) => {
 
   useEffect(() => {
     if (imageSrc) setHeaderImageSrc(imageSrc);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageSrc]);
 
   return <></>;

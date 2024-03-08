@@ -6,6 +6,7 @@ import HeaderBgChanger from "@/components/HeaderBgChanger";
 import PagePadding from "@/components/PagePadding";
 import PlayListHead from "@/components/PlayListHead";
 import SongCardRowExpand from "@/components/SongCardRowExpand";
+
 interface PlaylistPageProps {
   searchParams: {
     list: string;
