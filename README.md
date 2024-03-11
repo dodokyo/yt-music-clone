@@ -1,3 +1,4 @@
+# YT Music Clone Coding With NextJS 14
 
 ## install
 
@@ -30,4 +31,24 @@ npx shadcn-ui@latest init
 yarn add next-themes
 - 다크모드 provider 제공  
 - .dark 클래스에 다크 모드 관련 색상이 정의 된다.
+```
+
+## git branch check point
+
+*ch-1-done 라는 이름으로 브랜치가 있습니다.  
+
+
+```
+ch1-done    
+ch2-done    
+ch3-done    
+ch4-done    
+ch5-done    
+ch6-done    
+ch7-done    
+ch8-done    
+ch9-done    
+ch10-done   
+ch11-done   
+ch12-done   
 ```
